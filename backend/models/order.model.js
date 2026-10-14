@@ -31,9 +31,21 @@ const orderSchema = new mongoose.Schema(
 			required: true,
 			min: 0,
 		},
-		stripeSessionId: {
+		couponCode: { type: String, default: null },
+		razorpayOrderId: {
+			type: String,
+			required: true,
+			unique: true,
+		},
+		razorpayPaymentId: {
 			type: String,
 			unique: true,
+			sparse: true,
+		},
+		paymentStatus: {
+			type: String,
+			enum: ["pending", "paid"],
+			default: "pending",
 		},
 	},
 	{ timestamps: true }
